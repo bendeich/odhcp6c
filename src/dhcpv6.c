@@ -257,6 +257,7 @@ int init_dhcpv6(const char *ifname, unsigned int options, int sk_prio, int sol_t
 			htons(DHCPV6_OPT_SNTP_SERVERS),
 			htons(DHCPV6_OPT_NTP_SERVER),
 			htons(DHCPV6_OPT_AFTR_NAME),
+			htons(DHCPV6_OPT_PCP_NAME),
 			htons(DHCPV6_OPT_PD_EXCLUDE),
 #ifdef EXT_CER_ID
 			htons(DHCPV6_OPT_CER_ID),
@@ -1112,6 +1113,7 @@ static int dhcpv6_handle_reply(enum dhcpv6_msg orig, _unused const int rc,
 		odhcp6c_clear_state(STATE_SIP_IP);
 		odhcp6c_clear_state(STATE_SIP_FQDN);
 		odhcp6c_clear_state(STATE_AFTR_NAME);
+		odhcp6c_clear_state(STATE_PCP_NAME);
 		odhcp6c_clear_state(STATE_CER);
 		odhcp6c_clear_state(STATE_S46_MAPT);
 		odhcp6c_clear_state(STATE_S46_MAPE);
