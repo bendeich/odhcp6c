@@ -1218,6 +1218,11 @@ static int dhcpv6_handle_reply(enum dhcpv6_msg orig, _unused const int rc,
 				odhcp6c_get_state(STATE_AFTR_NAME, &cur_len);
 				if (cur_len == 0)
 					odhcp6c_add_state(STATE_AFTR_NAME, odata, olen);
+			} else if (otype == DHCPV6_OPT_PCP_NAME && olen > 5) {
+				size_t cur_len;
+				odhcp6c_get_state(STATE_PCP_NAME, &cur_len);
+				if (cur_len == 0)
+					odhcp6c_add_state(STATE_PCP_NAME, odata, olen);
 			} else if (otype == DHCPV6_OPT_SOL_MAX_RT && olen == 4) {
 				uint32_t sol_max_rt = ntohl_unaligned(odata);
 				if (sol_max_rt >= DHCPV6_SOL_MAX_RT_MIN &&
